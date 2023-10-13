@@ -1,0 +1,14 @@
+.idea
+.vscode
+__pycache__/
+*.py[cod]
+cookies
+app.log
+docs/build
+docs/source
+!docs/source/conf.py
+!docs/source/help.rst
+!docs/source/index.rst
+!docs/source/license.rst
+.python-version
+tokens/
