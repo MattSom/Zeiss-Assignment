@@ -2,7 +2,7 @@
 # Mate Somoracz, Zeiss Assignment, October 2023
 #
 
-from app.models import Box, Stack
+from app.models import Box, Stack, StackStorage
 
 
 a = Box("A")
@@ -50,4 +50,6 @@ stack3.add_box(f)
 
 stacks = [stack1, stack2, stack3]
 
-print(stacks)
+storage = StackStorage(stacks=stacks)
+
+print(storage)
