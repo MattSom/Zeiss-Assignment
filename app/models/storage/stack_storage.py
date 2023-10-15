@@ -6,10 +6,12 @@ from .storage import Storage
 
 
 class StackStorage(Storage):
-    def __init__(self, limit=0, stacks=[]):
+    def __init__(self, stacks=None, limit=0):
         self.limit = limit
         self._stacks = []
-        self.stacks = stacks
+
+        if stacks is not None:
+            self.stacks = stacks
 
     @property
     def stacks(self):
@@ -39,7 +41,7 @@ class StackStorage(Storage):
 
         if not stack.number == len(self.stacks) + 1:
             raise ValueError(
-                f"Stack number ({stack.number }) must be consecutive without gaps (stack size: {len(self.stacks)})."
+                f"Stack number ({stack.number}) must be consecutive without gaps (number of stacks: {len(self.stacks)})."
             )
 
         self.stacks.append(stack)

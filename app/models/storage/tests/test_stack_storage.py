@@ -64,7 +64,7 @@ class TestStackStorage:
 
         with pytest.raises(
             ValueError,
-            match=f"Stack number \\({new_stack.number}\\) must be consecutive without gaps \\(stack size: {len(self.storage.stacks)}\\).",
+            match=f"Stack number \\({new_stack.number}\\) must be consecutive without gaps \\(number of stacks: {len(self.storage.stacks)}\\).",
         ):
             self.storage.add_container(new_stack)
 

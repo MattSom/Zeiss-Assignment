@@ -13,7 +13,7 @@ class Stack:
 
     def __repr__(self):
         box_repr = " ".join(f"{box}" for box in self.boxes)
-        return f"{self.number} {box_repr}"
+        return f"<Stack {self.number} {box_repr}>"
 
     def add_box(self, box):
         self.boxes.append(box)
