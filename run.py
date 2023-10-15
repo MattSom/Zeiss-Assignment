@@ -53,3 +53,4 @@ stacks = [stack1, stack2, stack3]
 storage = StackStorage(stacks=stacks)
 
 print(storage)
+print(storage.stack_tops())

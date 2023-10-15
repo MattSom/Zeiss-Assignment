@@ -4,7 +4,7 @@
 
 import pytest
 
-from app.models import Stack
+from app.models import Stack, Box
 
 from ..stack_storage import StackStorage
 
@@ -67,3 +67,23 @@ class TestStackStorage:
             match=f"Stack number \\({new_stack.number}\\) must be consecutive without gaps \\(stack size: {len(self.storage.stacks)}\\).",
         ):
             self.storage.add_container(new_stack)
+
+    def test_stack_tops_returns_underscores_for_empty_stacks(self):
+        self.storage.stacks = [Stack(1), Stack(2), Stack(3)]
+        assert self.storage.stack_tops() == "___"
+
+    def test_stack_tops_returns_concatenated_last_box_labels(self):
+        stack1 = Stack(1)
+        stack2 = Stack(2)
+        stack3 = Stack(3)
+        stack4 = Stack(4)
+        stack5 = Stack(5)
+
+        stack1.add_box(Box("A"))
+        stack2.add_boxes([Box("B"), Box("C")])
+        stack4.add_box(Box("D"))
+        stack5.add_boxes([Box("F"), Box("C")])
+
+        self.storage.stacks = [stack1, stack2, stack3, stack4, stack5]
+
+        assert self.storage.stack_tops() == "AC_DC"

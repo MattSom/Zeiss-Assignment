@@ -43,3 +43,10 @@ class StackStorage(Storage):
             )
 
         self.stacks.append(stack)
+
+    def stack_tops(self):
+        stack_tops = [
+            stack.boxes[-1].label if stack.boxes else "_" for stack in self.stacks
+        ]
+
+        return "".join(stack_tops)

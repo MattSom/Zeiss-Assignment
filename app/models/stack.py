@@ -12,14 +12,14 @@ class Stack:
         self.number = number
 
     def __repr__(self):
-        box_repr = " ".join(f"{box}" for box in self.boxes[::-1])
+        box_repr = " ".join(f"{box}" for box in self.boxes)
         return f"{self.number} {box_repr}"
 
     def add_box(self, box):
         self.boxes.append(box)
 
+    def add_boxes(self, boxes):
+        self.boxes.extend(boxes)
+
     def get_top_box(self):
-        if self.boxes:
-            return self.boxes[-1]
-        else:
-            return None
+        return self.boxes[-1] if self.boxes else None
