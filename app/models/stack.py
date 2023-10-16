@@ -4,12 +4,15 @@
 
 
 class Stack:
-    def __init__(self, number):
+    def __init__(self, number, boxes=None):
         if not isinstance(number, int) or isinstance(number, bool):
             raise TypeError("The argument `number` must be of an integer.")
 
-        self.boxes = []
         self.number = number
+        self.boxes = boxes
+
+        if boxes is None:
+            self.boxes = []
 
     def __repr__(self):
         box_repr = " ".join(f"{box}" for box in self.boxes)
