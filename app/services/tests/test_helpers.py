@@ -4,7 +4,11 @@
 
 import pytest
 
-from ..helpers import read_data_until_end_line, read_in_chunks_with_skip
+from ..helpers import (
+    read_data_until_end_line,
+    read_in_chunks_with_skip,
+    pop_last_n_elements,
+)
 
 
 class TestReadDataUntilEndLine:
@@ -86,3 +90,33 @@ class TestReadInChunksWithSkip:
             AttributeError, match="Can not read empty chunks with zero skips."
         ):
             list(read_in_chunks_with_skip(string, chunk_size, skip_size))
+
+
+class TestPopLastNElements:
+    def test_when_n_is_less_than_the_lenghth_of_the_list(self):
+        original_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        n = 3
+        result = pop_last_n_elements(original_list, n)
+        assert result == [8, 9, 10]
+        assert original_list == [1, 2, 3, 4, 5, 6, 7]
+
+    def test_when_n_is_equal_to_the_length_of_the_list(self):
+        original_list = [1, 2, 3, 4, 5]
+        n = 5
+        result = pop_last_n_elements(original_list, n)
+        assert result == [1, 2, 3, 4, 5]
+        assert original_list == []
+
+    def test_when_n_is_greater_than_the_length_of_the_list(self):
+        original_list = [1, 2, 3, 4]
+        n = 5
+        result = pop_last_n_elements(original_list, n)
+        assert result == [1, 2, 3, 4]
+        assert original_list == []
+
+    def test_with_an_empty_list(self):
+        original_list = []
+        n = 3
+        result = pop_last_n_elements(original_list, n)
+        assert result == []
+        assert original_list == []

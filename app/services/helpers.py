@@ -24,3 +24,14 @@ def read_in_chunks_with_skip(string, chunk_size, skip_size):
         chunk = string[i : i + chunk_size]
         yield chunk
         i += chunk_size + skip_size
+
+
+def pop_last_n_elements(original_list, n):
+    if n >= len(original_list):
+        result = original_list[:]
+        original_list.clear()
+        return result
+    else:
+        result = original_list[-n:]
+        del original_list[-n:]
+        return result
