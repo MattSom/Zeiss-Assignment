@@ -2,13 +2,14 @@
 # Mate Somoracz, Zeiss Assignment, October 2023
 #
 
+import copy
+
 from app.models import Box, Stack, StackStorage
+
 from .helpers import read_in_chunks_with_skip
 
 
 def create_stack_storage_from_lines(lines):
-    lines.reverse()
-
     stack_numbers = list(map(int, lines[0].split()))
     box_data_lines = lines[1:]
 
